@@ -6,7 +6,7 @@ from pyscript import display
 from js import console
 
 title = "Pandas (and basic DOM manipulation)"
-page_message = "This example loads a remote CSV file into a Pandas dataframe, and displays it."
+page_message = f"This example loads a remote CSV file into a Pandas dataframe  {np.random.randint(10)}, and displays it."
 url = "https://raw.githubusercontent.com/datasets/airport-codes/master/data/airport-codes.csv"
 
 pydom["title#header-title"].html = title
@@ -17,10 +17,8 @@ pydom["input#txt-url"][0].value = url
 def log(message):
     # log to pandas dev console
     print(message)
-    print(np.random.randint(10))
     # log to JS console
     console.log(message)
-    console.log(np.random.randint(10))
 
 def loadFromURL(event):
     pydom["div#pandas-output-inner"].html = ""
