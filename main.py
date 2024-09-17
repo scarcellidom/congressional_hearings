@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from pyweb import pydom
 from pyodide.http import open_url
 from pyscript import display
@@ -18,6 +19,7 @@ def log(message):
     print(message)
     # log to JS console
     console.log(message)
+    console.log(np.random.randint(10))
 
 def loadFromURL(event):
     pydom["div#pandas-output-inner"].html = ""
