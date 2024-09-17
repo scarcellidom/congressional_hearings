@@ -26,7 +26,7 @@ def loadFromURL(event):
 
     log(f"Trying to fetch CSV from {url}")
     # df = pd.read_csv(open_url(url))
-    df = pd.concat([pd.read_csv(f"./assets/house_transcripts_{i}.csv",usecols=['date','youtube_id']) for i in range(1,5)])
+    df = pd.read_csv("./assets/house_transcripts_1.csv")
 
     pydom["div#pandas-output"].style["display"] = "block"
     pydom["div#pandas-dev-console"].style["display"] = "block"
