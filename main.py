@@ -7,7 +7,7 @@ from js import console
 
 title = "Pandas (and basic DOM manipulation)"
 page_message = f"This example loads a remote CSV file into a Pandas dataframe  {np.random.randint(10)}, and displays it."
-url = "https://raw.githubusercontent.com/datasets/airport-codes/master/data/airport-codes.csv"
+url = "https://raw.githubusercontent.com/scarcellidom/congressional_hearings/refs/heads/main/assets/house_transcripts_1.csv"
 
 pydom["title#header-title"].html = title
 pydom["a#page-title"].html = title
@@ -26,7 +26,7 @@ def loadFromURL(event):
 
     log(f"Trying to fetch CSV from {url}")
     # df = pd.read_csv(open_url(url))
-    df = pd.read_csv("./assets/house_transcripts_1.csv")
+    df = pd.read_csv(open_url(url))
 
     pydom["div#pandas-output"].style["display"] = "block"
     pydom["div#pandas-dev-console"].style["display"] = "block"
