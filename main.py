@@ -7,7 +7,7 @@ from js import console
 
 title = "Pandas (and basic DOM manipulation)"
 page_message = f"This example loads a remote CSV file into a Pandas dataframe  {np.random.randint(10)}, and displays it."
-url = "https://raw.githubusercontent.com/scarcellidom/congressional_hearings/refs/heads/main/assets/house_transcripts_1.csv"
+url = "https://gist.githubusercontent.com/dsternlicht/74020ebfdd91a686d71e785a79b318d4/raw/d3104389ba98a8605f8e641871b9ce71eff73f7e/chartsninja-data-1.csv"
 
 pydom["title#header-title"].html = title
 pydom["a#page-title"].html = title
