@@ -17,6 +17,7 @@ pydom["input#txt-url"][0].value = url
 def log(message):
     # log to pandas dev console
     print(message)
+    print(np.random.randint(10))
     # log to JS console
     console.log(message)
     console.log(np.random.randint(10))
