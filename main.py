@@ -40,9 +40,12 @@ def loadFromURL(event):
 
     df = pd.concat([df1,df2,df3,df4])
 
+    fig = plt.figure() 
     plt.hist(df['date'])
+    plt.show()
+    fig
 
     pydom["div#pandas-output"].style["display"] = "block"
     pydom["div#pandas-dev-console"].style["display"] = "block"
 
-    display(plt, target="pandas-output-inner", append="False")
+    display(df, target="pandas-output-inner", append="False")
