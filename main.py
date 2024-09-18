@@ -40,10 +40,13 @@ def loadFromURL(event):
 
     df = pd.concat([df1,df2,df3,df4])
 
-    fig = plt.figure() 
-    plt.hist(df['date'])
-    plt.show()
-    fig
+    try:
+        fig = plt.figure() 
+        plt.hist(df['date'])
+        plt.show()
+        fig
+    except Exception as e:
+        log(e)
 
     pydom["div#pandas-output"].style["display"] = "block"
     pydom["div#pandas-dev-console"].style["display"] = "block"
