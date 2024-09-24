@@ -108,4 +108,4 @@ def loadFromURL(event):
         
         display(fig, target="pandas-output-inner")
     except Exception as e:
-        console.log(e)
+        print(e)
