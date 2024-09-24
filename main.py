@@ -42,6 +42,7 @@ def loadFromURL(event):
         df4 = pd.read_csv(open_url(url4))
         
         df = pd.concat([df1,df2,df3,df4])
+        df['date'] = pd.to_datetime(df['date'])
         
         term = "Ukraine"
         start_date = datetime.datetime(2012, 1, 1)
@@ -108,4 +109,4 @@ def loadFromURL(event):
         
         display(fig, target="pandas-output-inner")
     except Exception as e:
-        console.log(str(e))
+        console.log(e)
