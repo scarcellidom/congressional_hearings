@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import datetime
 import matplotlib.pyplot as plt
 from pyweb import pydom
 from pyodide.http import open_url
@@ -8,7 +9,7 @@ from js import console
 
 title = "Pandas (and basic DOM manipulation)"
 page_message = f"This example loads a remote CSV file into a Pandas dataframe  {np.random.randint(10)}, and displays it."
-url = "https://raw.githubusercontent.com/scarcellidom/congressional_hearings/refs/heads/main/assets/house_transcripts_3.csv"
+url = "datetime.datetime.now()"
 
 url1 = "https://raw.githubusercontent.com/scarcellidom/congressional_hearings/refs/heads/main/assets/house_transcripts_1.csv"
 url2 = "https://raw.githubusercontent.com/scarcellidom/congressional_hearings/refs/heads/main/assets/house_transcripts_2.csv"
