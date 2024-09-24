@@ -7,6 +7,11 @@ from pyweb import pydom
 from pyodide.http import open_url
 from pyscript import display
 from js import console
+import nltk
+try:
+    nltk.downloader.download("vader_lexicon")
+except Exception as e:
+    print("nope")
 from nltk.sentiment import SentimentIntensityAnalyzer
 
 title = "Pandas (and basic DOM manipulation)"
