@@ -11,7 +11,7 @@ from nltk.sentiment import SentimentIntensityAnalyzer
 
 title = "Pandas (and basic DOM manipulation)"
 page_message = f"This example loads a remote CSV file into a Pandas dataframe  {np.random.randint(10)}, and displays it."
-url = datetime.datetime.now()
+url = "Ukraine"
 
 url1 = "https://raw.githubusercontent.com/scarcellidom/congressional_hearings/refs/heads/main/assets/house_transcripts_1.csv"
 url2 = "https://raw.githubusercontent.com/scarcellidom/congressional_hearings/refs/heads/main/assets/house_transcripts_2.csv"
@@ -44,7 +44,7 @@ def loadFromURL(event):
         df = pd.concat([df1,df2,df3,df4])
         df['date'] = pd.to_datetime(df['date'])
         
-        term = "Ukraine"
+        term = url
         start_date = datetime.datetime(2012, 1, 1)
         end_date = datetime.datetime(2023, 12, 31)
         subcommittee = "."
