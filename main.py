@@ -48,11 +48,11 @@ def loadFromURL(event):
     end_date = datetime.datetime(2023, 12, 31)
     subcommittee = "."
     
+    df = df.loc[(df['yt_tscpt'].astype(str).str.contains(term, regex=True, case=False)) &
+                (df['yt_tscpt'].astype(str).str.contains(subcommittee, regex=True, case=False)) &
+                (df['date']>start_date) & (df['date']<end_date)]
+    
     try:
-        df = df.loc[(df['yt_tscpt'].astype(str).str.contains(term, regex=True, case=False)) &
-                    (df['yt_tscpt'].astype(str).str.contains(subcommittee, regex=True, case=False)) &
-                    (df['date']>start_date) & (df['date']<end_date)]
-        
         s_score = []
         wc_words = []
         sia = SentimentIntensityAnalyzer()
@@ -79,7 +79,7 @@ def loadFromURL(event):
                 s_score.append(0)
                 wc_words.append({})
     except Exception as e:
-        log(e)
+        log(len(s_score))
         
     df['s_score'] = s_score
     df['wc_words'] = wc_words
