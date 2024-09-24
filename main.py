@@ -51,12 +51,13 @@ def loadFromURL(event):
     df = df.loc[(df['yt_tscpt'].astype(str).str.contains(term, regex=True, case=False)) &
                 (df['yt_tscpt'].astype(str).str.contains(subcommittee, regex=True, case=False)) &
                 (df['date']>start_date) & (df['date']<end_date)]
+    log(f"length of dataset is {len(df)}")
     
+    s_score = []
+    wc_words = []
+    sia = SentimentIntensityAnalyzer()
+
     try:
-        s_score = []
-        wc_words = []
-        sia = SentimentIntensityAnalyzer()
-        
         for hearing in df['yt_tscpt']:
             score = {}
             for i in range(len(hearing.split(term))):
@@ -79,7 +80,7 @@ def loadFromURL(event):
                 s_score.append(0)
                 wc_words.append({})
     except Exception as e:
-        log(len(s_score))
+        log(i)
         
     df['s_score'] = s_score
     df['wc_words'] = wc_words
