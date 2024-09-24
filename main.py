@@ -8,6 +8,8 @@ from pyodide.http import open_url
 from pyscript import display
 from js import console
 import nltk
+nltk.downloader.download("all")
+from nltk.sentiment import SentimentIntensityAnalyzer
 
 title = "Pandas (and basic DOM manipulation)"
 page_message = f"This example loads a remote CSV file into a Pandas dataframe  {np.random.randint(10)}, and displays it."
@@ -29,12 +31,6 @@ def log(message):
     print(message)
     # log to JS console
     console.log(message)
-
-try:
-    nltk.downloader.download("vader_lexicon")
-except Exception as e:
-    log("nope")
-from nltk.sentiment import SentimentIntensityAnalyzer
 
 def loadFromURL(event):
     pydom["div#pandas-output-inner"].html = ""
@@ -61,7 +57,10 @@ def loadFromURL(event):
     
     s_score = []
     wc_words = []
-    sia = SentimentIntensityAnalyzer()
+    try:
+        sia = SentimentIntensityAnalyzer()
+    except Exception as e:
+        log(type(e))
 
     try:
         for hearing in df['yt_tscpt']:
