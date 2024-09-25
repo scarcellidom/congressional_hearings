@@ -10,20 +10,22 @@ from js import console, fetch
 from pathlib import Path
 import asyncio, os, sys, io, zipfile
 import nltk
-
-response = await fetch('https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/sentiment/vader_lexicon.zip')
-js_buffer = await response.arrayBuffer()
-py_buffer = js_buffer.to_py()  # this is a memoryview
-stream = py_buffer.tobytes()  # now we have a bytes object
-
-d = Path("/nltk/vader")
-d.mkdir(parents=True, exist_ok=True)
-
-Path('/nltk/vader/master.zip').write_bytes(stream)
-
-zipfile.ZipFile('/nltk/vader/master.zip').extractall(
-    path='/nltk/vader/'
-)
+try:
+    response = await fetch('https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/sentiment/vader_lexicon.zip')
+    js_buffer = await response.arrayBuffer()
+    py_buffer = js_buffer.to_py()  # this is a memoryview
+    stream = py_buffer.tobytes()  # now we have a bytes object
+    
+    d = Path("/nltk/vader")
+    d.mkdir(parents=True, exist_ok=True)
+    
+    Path('/nltk/vader/master.zip').write_bytes(stream)
+    
+    zipfile.ZipFile('/nltk/vader/master.zip').extractall(
+        path='/nltk/vader/'
+    )
+except Exception as e:
+    display(e, target="pandas-output-inner")
 
 # nltk.downloader.download("all")
 from nltk.sentiment import SentimentIntensityAnalyzer
@@ -77,7 +79,7 @@ def loadFromURL(event):
     try:
         sia = SentimentIntensityAnalyzer()
     except Exception as e:
-        log(e)
+        display(e, target="pandas-output-inner")
 
     try:
         for hearing in df['yt_tscpt']:
