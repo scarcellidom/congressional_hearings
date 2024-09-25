@@ -6,9 +6,26 @@ import matplotlib.dates as dates
 from pyweb import pydom
 from pyodide.http import open_url
 from pyscript import display
-from js import console
+from js import console, fetch
+from pathlib import Path
+import asyncio, os, sys, io, zipfile
 import nltk
-nltk.downloader.download("all")
+
+response = await fetch('https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/sentiment/vader_lexicon.zip')
+js_buffer = await response.arrayBuffer()
+py_buffer = js_buffer.to_py()  # this is a memoryview
+stream = py_buffer.tobytes()  # now we have a bytes object
+
+d = Path("/nltk/vader")
+d.mkdir(parents=True, exist_ok=True)
+
+Path('/nltk/vader/master.zip').write_bytes(stream)
+
+zipfile.ZipFile('/nltk/vader/master.zip').extractall(
+    path='/nltk/vader/'
+)
+
+# nltk.downloader.download("all")
 from nltk.sentiment import SentimentIntensityAnalyzer
 
 title = "Pandas (and basic DOM manipulation)"
@@ -60,7 +77,7 @@ def loadFromURL(event):
     try:
         sia = SentimentIntensityAnalyzer()
     except Exception as e:
-        log(type(e))
+        log(e)
 
     try:
         for hearing in df['yt_tscpt']:
