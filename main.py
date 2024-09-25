@@ -6,10 +6,13 @@ import matplotlib.dates as dates
 from pyweb import pydom
 from pyodide.http import open_url
 from pyscript import display
-from js import console, fetch
-from pathlib import Path
-import asyncio, os, sys, io, zipfile
-import nltk
+try:
+    from js import console, fetch
+    from pathlib import Path
+    import asyncio, os, sys, io, zipfile
+    import nltk
+except Exception as e:
+    display(e, target="pandas-output-inner")
 try:
     response = await fetch('https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/sentiment/vader_lexicon.zip')
     js_buffer = await response.arrayBuffer()
